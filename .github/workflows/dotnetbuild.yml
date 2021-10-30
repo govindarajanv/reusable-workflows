@@ -94,4 +94,13 @@ jobs:
           name: ${{ inputs.artifact-name }}
           path: ${{ inputs.project-folder }}/wdrop/**
           if-no-files-found: error
-
+      - name: release branch
+        if: ${{ inputs.release-branch == 'main' }}
+        run: echo "This will be executed only for main branch"
+      - name: all-parameters
+        run: |
+          echo ${{ inputs.is_dockerized }}
+          echo ${{ inputs.require-helm }}
+          echo ${{ inputs.require_qa_deploy }}
+          echo ${{ inputs.run_test_on_qa_deploy }}
+          echo ${{ inputs.post-scan-step }}
