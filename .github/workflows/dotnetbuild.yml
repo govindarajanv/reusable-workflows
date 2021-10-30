@@ -80,14 +80,14 @@ jobs:
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
       - name: Restore dependencies
-        run: dotnet restore
+        run: echo "dotnet restore"
       - name: Build
-        run: dotnet build --no-restore
+        run: echo "dotnet build --no-restore"
       - name: Test
         if: ${{ inputs.test }}
-        run: dotnet test --no-build --verbosity normal
+        run: echo " test --no-build --verbosity normal"
       - name: Publish
-        run: dotnet publish -c ${{ inputs.publish-configuration }} -o wdrop
+        run: echo " publish -c ${{ inputs.publish-configuration }} -o wdrop"
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2.2.2
         with:
