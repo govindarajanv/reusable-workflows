@@ -80,7 +80,7 @@ jobs:
         with:
           dotnet-version: ${{ inputs.dotnet-version }}
       - name: Restore dependencies
-        run: echo "dotnet restore"
+        run: echo "***********"
       - name: Build
         run: echo "dotnet build --no-restore"
       - name: Test
