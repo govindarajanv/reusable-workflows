@@ -33,7 +33,37 @@ on:
         description: Name of the artifact to upload
         type: string
         default: drop
-    
+        
+      release-branch:
+        description: Branch in which all controls will be enforced
+        type: string
+        default: main
+        
+      is_dockerized:
+        description: if  docker related steps are required, docker image will be published
+        type: boolean
+        default: false
+      
+      require-helm:
+        description: if helm chart creation and publishing are required
+        type: boolean
+        default: false
+        
+      require_qa_deploy:
+        description: Deploy to QA
+        type: boolean
+        default: false
+      
+      run_test_on_qa_deploy:
+        description: Execute tests after deployment to QA
+        type: boolean
+        default: false
+        
+      post-scan-step:
+        description: Do you require post scan step
+        type: boolean
+        default: false
+        
 jobs:
   build:
     name: Build dotnet app
