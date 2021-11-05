@@ -33,6 +33,11 @@ on:
         description: Name of the artifact to upload
         type: string
         default: drop
+        
+      release-branches:
+        description: Name of the artifact to upload
+        type: string
+        default: "main"
     
 jobs:
   build:
@@ -64,4 +69,5 @@ jobs:
           name: ${{ inputs.artifact-name }}
           path: ${{ inputs.project-folder }}/wdrop/**
           if-no-files-found: error
-
+      - name: get branch name
+        run: echo ${{ github.ref_name }}
