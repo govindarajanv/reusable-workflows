@@ -37,7 +37,7 @@ on:
       release-branches:
         description: Name of the artifact to upload
         type: string
-        default: "main"
+        required: true
     
 jobs:
   build:
