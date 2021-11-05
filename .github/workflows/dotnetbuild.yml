@@ -53,10 +53,11 @@ jobs:
       - name: get branch name
         id: release-gates
         run: |
+         set -x
          echo ${{ github.ref_name }}
          branch=$(echo ${{ inputs.release-branches }} |tr -d ' '|tr ',' '\n'|grep -x ${{ github.ref_name }}) || true
-       
-         if [ $branch == ${{ github.ref_name }} ]; then
+         echo $branch
+         if [ "$branch" == "${{ github.ref_name }}" ]; then
             echo '::set-output name=apply::true'
          else
             echo '::set-output name=apply::false'
