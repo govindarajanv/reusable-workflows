@@ -54,12 +54,12 @@ jobs:
         id: release-gates
         run: |
          echo ${{ github.ref_name }}
-         echo ${{ inputs.release-branches }} |tr -d ' '|tr ',' '\n'|grep ${{ github.ref_name }}
-         retVal=$?
-         if [ $retVal -ne 0 ]; then
-            echo '::set-output name=apply::false'
-         else
+         branch=$(echo ${{ inputs.release-branches }} |tr -d ' '|tr ',' '\n'|grep -x ${{ github.ref_name }}) || true
+       
+         if [ $branch == ${{ github.ref_name }} ]; then
             echo '::set-output name=apply::true'
+         else
+            echo '::set-output name=apply::false'
          fi
       - name: check release gates
         if: ${{  steps.release-gates.outputs.apply }}
