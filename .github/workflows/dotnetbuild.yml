@@ -65,7 +65,7 @@ jobs:
       - name: check release gates
         if: ${{  steps.release-gates.outputs.apply == 'true' }}
         run: |
-           echo ${{ steps.release-gates.outputs.apply }}\
-           echo ${{ github }}
+           echo ${{ steps.release-gates.outputs.apply }}
+           echo ${{ github.sha }}
          
          
