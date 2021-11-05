@@ -63,6 +63,6 @@ jobs:
          fi
       - name: check release gates
         run: |
-           echo ${{ steps.release-gates.apply }}
+           echo ${{ steps.release-gates.outputs.apply }}
          
          
