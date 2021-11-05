@@ -51,6 +51,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: get branch name
+        id: release-gates
         run: |
          echo ${{ github.ref_name }}
-         echo ${{ inputs.release-branches }}
+         echo ${{ inputs.release-branches }} |tr -d ' '|tr ',' '\n'|grep ${{ github.ref_name }}
+         retVal=$?
+         if [ $retVal -ne 0 ]; then
+            echo '::set-output name=apply::false'
+         else
+            echo '::set-output name=apply::true'
+         fi
+      - name: check release gates
+        run: |
+           echo ${{ steps.release-gates.apply }}
+         
+         
