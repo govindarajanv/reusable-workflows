@@ -62,6 +62,7 @@ jobs:
             echo '::set-output name=apply::true'
          fi
       - name: check release gates
+        if: ${{  steps.release-gates.outputs.apply }}
         run: |
            echo ${{ steps.release-gates.outputs.apply }}
          
